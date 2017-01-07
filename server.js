@@ -24,11 +24,25 @@ const bossQuizController = require('./controllers/bossQuiz');
  */
 const app = express();
 
+app.use('/', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, x-auth, Content-Type");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
+  res.header("Access-Control-Max-Age", 600);
+
+  // intercept OPTIONS method
+  if ('OPTIONS' == req.method) {
+    res.send(200);
+  }
+  else {
+    next();
+  }
+});
+
 // Configure the app the middlewares
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 
 // Set up major routes here
 app.get('/', homeController.index);

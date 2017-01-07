@@ -24,8 +24,36 @@ exports.getScoreByOpenId = (req, res) => {
 };
 
 exports.updateScoreByOpenId = (req, res) => {
-  console.log('want to update?...')
   const {openId, name, score} = req.body;
+
+  if(!openId || !name || !score){
+    return res.json({
+      errcode: 1,
+      errmsg: "必须提交openId, name 和score"
+    })
+  }
+
+  if(typeof openId !== 'string'){
+    return res.json({
+      errcode: 1,
+      errmsg: "提交的openId必须为字符串类型"
+    })
+  }
+
+  if(typeof name !== 'string'){
+    return res.json({
+      errcode: 1,
+      errmsg: "提交的name必须为字符串类型"
+    })
+  }
+
+  if(typeof score !== 'number'){
+    return res.json({
+      errcode: 1,
+      errmsg: "提交的分数必须为数字类型"
+    })
+  }
+
   BossQuiz.findOneAndUpdate({openId:openId}, {openId: openId, name: name, score: score})
     .then((item)=>{
       if(item){
@@ -49,6 +77,7 @@ exports.updateScoreByOpenId = (req, res) => {
       })
     })
     .catch((err)=>{
+      console.log(err)
       res.json({
         errcode: 1,
         errmsg: "内部错误，请稍后再试"
