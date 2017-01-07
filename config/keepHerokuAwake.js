@@ -6,7 +6,7 @@ var http = require("http");
 
 module.exports = function () {
   setInterval(function() {
-    http.get("https://tounickapi.herokuapp.com");
+    http.get("http://tounickapi.herokuapp.com");
   }, 300000); // every 5 minutes (300000)
 }
 
