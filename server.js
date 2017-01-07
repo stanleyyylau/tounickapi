@@ -14,6 +14,7 @@ const mode = process.env.NODE_ENV;
 
 // Import your controllers here
 const homeController = require('./controllers/home');
+const bossQuizController = require('./controllers/bossQuiz');
 
 
 
@@ -31,7 +32,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Set up major routes here
 app.get('/', homeController.index);
-
+app.get('/bossquiz/:openId', bossQuizController.getScoreByOpenId);
+app.post('/bossquiz/update', bossQuizController.updateScoreByOpenId);
 
 
 // Error handling here
