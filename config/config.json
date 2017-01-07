@@ -1,0 +1,10 @@
+{
+  "test": {
+    "PORT": 4545,
+    "MONGODB_URI": "mongodb://localhost:27017/tounickapi_test"
+  },
+  "development": {
+    "PORT": 4545,
+    "MONGODB_URI": "mongodb://localhost:27017/tounick"
+  }
+}
