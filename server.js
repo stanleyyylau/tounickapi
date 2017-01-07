@@ -11,6 +11,7 @@ const mongoose = require('mongoose');
 const dbConnection = require('./config/dbConnection')();
 const port = process.env.PORT;
 const mode = process.env.NODE_ENV;
+const keepAwake = require('./config/keepHerokuAwake')();
 
 // Import your controllers here
 const homeController = require('./controllers/home');
